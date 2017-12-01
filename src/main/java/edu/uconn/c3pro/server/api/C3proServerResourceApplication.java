@@ -1,4 +1,4 @@
-package edu.uconn.c3pro.server.auth;
+package edu.uconn.c3pro.server.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

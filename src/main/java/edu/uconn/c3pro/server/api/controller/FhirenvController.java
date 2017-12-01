@@ -1,4 +1,4 @@
-package edu.uconn.c3pro.server.auth.controller;
+package edu.uconn.c3pro.server.api.controller;
 
 import java.util.ArrayList;
 

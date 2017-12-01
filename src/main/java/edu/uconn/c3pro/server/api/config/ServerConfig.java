@@ -1,4 +1,4 @@
-package edu.uconn.c3pro.server.auth.config;
+package edu.uconn.c3pro.server.api.config;
 
 import javax.sql.DataSource;
 

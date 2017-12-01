@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>edu.uconn</groupId>
-	<artifactId>c3pro-server-resource</artifactId>
+	<artifactId>c3pro-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>c3pro-server-resource</name>
+	<name>c3pro-api</name>
 	<description>UConn Health C3-PRO Restful API using Spring Boot</description>
 
 	<parent>

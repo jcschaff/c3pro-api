@@ -1,4 +1,4 @@
-package edu.uconn.c3pro.server.auth.config;
+package edu.uconn.c3pro.server.api.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

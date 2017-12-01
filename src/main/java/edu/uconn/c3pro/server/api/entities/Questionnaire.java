@@ -1,4 +1,4 @@
-package edu.uconn.c3pro.server.auth.entities;
+package edu.uconn.c3pro.server.api.entities;
 
 public class Questionnaire {
 	private String id;

@@ -1,4 +1,4 @@
-package edu.uconn.c3pro.server.auth.controller;
+package edu.uconn.c3pro.server.api.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.uconn.c3pro.server.auth.entities.Contract;
-import edu.uconn.c3pro.server.auth.entities.Observation;
-import edu.uconn.c3pro.server.auth.entities.Patient;
-import edu.uconn.c3pro.server.auth.entities.Questionnaire;
-import edu.uconn.c3pro.server.auth.entities.QuestionnaireResponse;
+import edu.uconn.c3pro.server.api.entities.Contract;
+import edu.uconn.c3pro.server.api.entities.Observation;
+import edu.uconn.c3pro.server.api.entities.Patient;
+import edu.uconn.c3pro.server.api.entities.Questionnaire;
+import edu.uconn.c3pro.server.api.entities.QuestionnaireResponse;
 
 /**
  * HTTP/1.1 GET /c3pro/fhir/Questionnaire/{{questionnaire id}}
