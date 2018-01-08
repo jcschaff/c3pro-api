@@ -1,43 +1,56 @@
 package edu.uconn.c3pro.server.auth;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+
+import edu.uconn.c3pro.server.api.controller.FhirenvController;
+import edu.uconn.c3pro.server.api.controller.QuestionareController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
+@ActiveProfiles("test")
 public class C3proServerResourceApplicationTests {
 
-    @Autowired
-    private MockMvc mockMvc;
+	@TestConfiguration
+	static class C3ProServerAuthApplicationTestsContextConfiguration {
+//		@Bean
+//		public AuthDatabase authDatabase() {
+//			AuthDatabase authDatabase = Mockito.mock(AuthDatabase.class);
+//			return authDatabase;
+//		}
+//		@Bean
+//		public AppleReceiptVerifier appleReceiptVerifier() {
+//			AppleReceiptVerifier verifier = Mockito.mock(AppleReceiptVerifier.class);
+//			return verifier;
+//		}
+//	    @Bean
+//	    public AntispamFilter antispamFilter() {
+//	    		AntispamFilter antispamFilter = Mockito.mock(AntispamFilter.class);
+//	    		return antispamFilter;
+//	    }		
+//	    @Bean
+//	    public CredentialGenerator credentialsGenerator() {
+//	    		CredentialGenerator credentialGenerator = Mockito.mock(CredentialGenerator.class);
+//	    		return credentialGenerator;
+//	    }		
+	}
+
+	@Autowired
+    private QuestionareController questionnaireController;
+
+
+	@Autowired
+    private FhirenvController fhirenvController;
 
 	@Test
 	public void contextLoads() {
+		Assertions.assertThat(questionnaireController).isNotNull();
+		Assertions.assertThat(fhirenvController).isNotNull();
 	}
-
-	@Test
-    public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
-
-        this.mockMvc.perform(get("/greeting")).andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, World!"));
-    }
-
-    @Test
-    public void paramGreetingShouldReturnTailoredMessage() throws Exception {
-
-        this.mockMvc.perform(get("/greeting").param("name", "Spring Community"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, Spring Community!"));
-    }
-
 }

@@ -1,44 +1,47 @@
 package edu.uconn.c3pro.server.api.config;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.bch.c3pro.server.external.KeyValueStorage;
+import org.bch.c3pro.server.external.Queue;
+import org.bch.c3pro.server.external.S3Access;
+import org.bch.c3pro.server.external.SQSAccess;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 @Configuration
 public class ServerConfig {
- 
-	@Autowired
-	private Environment env;
-	 
-	@Bean
-	public DataSource dataSource() {
-	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
-	    dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-	    dataSource.setUrl(env.getProperty("jdbc.url"));
-	    dataSource.setUsername(env.getProperty("jdbc.user"));
-	    dataSource.setPassword(env.getProperty("jdbc.pass"));
-	    return dataSource;
-	}
-	 
-	@Bean
-	public TokenStore tokenStore() {
-	    return new JdbcTokenStore(dataSource());
-	}
 	
-//	@Primary
+	@Bean
+	public Queue sqsQueue() {
+		return new SQSAccess();
+		
+	}
+ 
+	@Bean
+	public KeyValueStorage s3KeyValueStorage() {
+		return new S3Access();
+		
+	}
+ 
+//	@Autowired
+//    JwtAccessTokenConverter jwtAccessTokenConverter;
+//	 
 //	@Bean
-//	public RemoteTokenServices tokenService() {
-//	    RemoteTokenServices tokenService = new RemoteTokenServices();
-//	    tokenService.setCheckTokenEndpointUrl(
-//	      "http://localhost:8080/spring-security-oauth-server/oauth/check_token");
-//	    tokenService.setClientId("fooClientIdPassword");
-//	    tokenService.setClientSecret("secret");
-//	    return tokenService;
+//	public TokenStore tokenStore() {
+//	    return new JwtTokenStore(jwtAccessTokenConverter);
 //	}
+//	
+//    @Bean
+//    protected JwtAccessTokenConverter jwtTokenEnhancer() {
+//        JwtAccessTokenConverter converter =  new JwtAccessTokenConverter();
+//        Resource resource = new ClassPathResource("public.cert");
+//        String publicKey = null;
+//        try {
+//            publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        converter.setVerifierKey(publicKey);
+//        return converter;
+//    }
+
 }
